@@ -1,4 +1,4 @@
 
-## `playlist-parser`
+## `cover-collage`
 
-A simple web UI for converting playlists copied from Apple Music player into social media friendly numbered list.
+A simple web UI to find album covers from a pasted playlist and build a 2x2 downloadable collage.

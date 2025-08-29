@@ -1,5 +1,5 @@
 {
-  "name": "playlist-parser",
+  "name": "cover-collage",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,9 +12,9 @@
     "serialize-javascript": "2.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "test": "NODE_OPTIONS=--openssl-legacy-provider react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
