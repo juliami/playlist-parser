@@ -67,11 +67,17 @@ export const extractAlbumNames = (rawPlaylist) => {
     return Array.from(unique.values());
 };
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+
+
 /**
  * Fetch album cover art using the iTunes Search API.
  * Returns a map of albumName -> artwork object.
  */
 export const fetchAlbumCovers = async (albumEntries) => {
+
+    await sleep(3000);
     if (!Array.isArray(albumEntries) || albumEntries.length === 0) {
         return {};
     }
