@@ -1,36 +1,14 @@
-import React from "react";
-import { createUseStyles } from 'react-jss'
 
-
-const useStyles = createUseStyles({
-    button: {
-        backgroundImage: 'linear-gradient(to right, #16222A 0%, #3A6073 51%, #16222A 100%)',
-        borderRadius: '4px',
-        display: 'block',
-        width: '100%',
-        color: '#fff',
-        cursor: 'pointer',
-        fontSize: '20px',
-        height: '50px',
-        '&:hover': {
-            backgroundImage: 'linear-gradient(to right, #16222A 0%, #498daf 51%, #16222A 100%)',
-
-        }
-    },
-    collageActions: {
-        marginTop: '16px',
-        display: 'flex',
-        gap: '8px',
-        alignItems: 'center'
-    }
-})
-
+import Button from './Button';
 
 const DownloadButton = ({ selected }) => {
-    const classes = useStyles();
 
-    return (<div className={classes.collageActions}>
-        <button disabled={selected.length !== 4} className={classes.button} onClick={async () => {
+    if (selected.length < 4) {
+        return null;
+    }
+
+    return (
+        <Button text="Download 2x2 collage (900x900)" onClick={async () => {
             const size = 900;
             const tile = size / 2;
             const canvas = document.createElement('canvas');
@@ -66,11 +44,8 @@ const DownloadButton = ({ selected }) => {
             } catch (e) {
                 alert('Failed to generate collage. Some images may not allow cross-origin use.');
             }
-        }}>Download 2x2 collage (900x900)</button>
-        {selected.length !== 4 && (
-            <div>Select exactly 4 covers to enable download.</div>
-        )}
-    </div>)
+        }} />
+  )
 }
 
 export default DownloadButton;

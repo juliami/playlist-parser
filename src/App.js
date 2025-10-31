@@ -6,6 +6,7 @@ import { AlbumProvider } from './context/AlbumContext'
 import PlaylistConverter from './components/PlaylistConverter';
 import PlaylistInput from './components/PlaylistInput';
 import CoverGrid from './components/CoverGrid';
+import DisplayMatrix from "./components/DisplayMatrix";
 
 const useStyles = createUseStyles({
   container: {
@@ -56,7 +57,7 @@ function App() {
           <CoverGrid />
           </section>
           <section className={classes.section}>
-          <div>Display image</div>
+          <DisplayMatrix />
           </section>
           {/* <PlaylistConverter /> */}
         </main>

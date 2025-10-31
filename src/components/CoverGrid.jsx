@@ -27,10 +27,21 @@ const useStyles = createUseStyles({
     color: "#16222A"
   },
     coverImage: {
-    width: '100%',
-    borderRadius: '6px',
-    boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
-    marginBottom: '0.2rem'
+      width: '100%',
+      borderRadius: '6px',
+      boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+      marginBottom: '0.2rem',
+      cursor: 'pointer',
+      '&:hover': {
+        opacity: 0.9
+      }
+    },
+
+
+       selectedImage: {
+        outline: '3px solid #b17ad5',
+            boxShadow: '0 7px 12px rgba(0,0,0,0.35)',
+
     },
 });
 
@@ -38,7 +49,6 @@ const Loading = () => <div>Loading…</div>;
 
 export default function CoverGrid() {
   const { searchedAlbums } = useAlbumContext();
-
 
   return (
     <Suspense fallback={<Loading />}>
@@ -49,15 +59,19 @@ export default function CoverGrid() {
 
 const Grid = ({ albumEntries }) => {
   const { data: covers } = useAlbumCovers(albumEntries);
+  const { toggleSelectedAlbums, selectedAlbums } = useAlbumContext();
+
   const classes = useStyles();
+
+  
 
   return (
     <div className={classes.coversGrid}>
       {covers.map((album) => (
-        <div key={album.key} className={classes.coverItem}>
+        <div key={album.key} className={`${classes.coverItem} ${selectedAlbums.find(s => s.src === album.artworkUrl600) ? classes.selectedImage : ''}`} onClick={() => toggleSelectedAlbums({src: album.artworkUrl600})}>
           <img
             src={album.artworkUrl600}
-            alt={album.albumName}
+            alt={album.albumName} 
             className={classes.coverImage}
           />
           <div className={classes.albumTitle}>

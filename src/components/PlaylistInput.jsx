@@ -3,6 +3,7 @@ import { useState} from 'react';
 import { createUseStyles } from "react-jss";
 import { extractAlbumNames } from './PlaylistConverter/albums';
 import { useAlbumContext } from '../context/AlbumContext';
+import Button from './Button';
 
  const useStyles = createUseStyles({
         textarea: {
@@ -22,31 +23,16 @@ import { useAlbumContext } from '../context/AlbumContext';
             padding: '30px',
          
         },
-        button: {
-            borderRadius: '4px',
-            display: 'block',
-            width: '100%',
-            color: '#fff',
-            cursor: 'pointer',
-            fontSize: '20px',
-            backgroundColor: '#b17ad5',
-            borderStyle: 'none',
-            height: '5vh',
-           transition: 'background-color 0.8s',
-            '&:hover': {
-                backgroundColor: '#74369c'
-            }
-        },
     })
 
 const PlaylistInput = () => {
         const [value, setValue] = useState('');
-        const { addAlbums } = useAlbumContext();
+        const { addSearchedAlbums } = useAlbumContext();
    
         const handleChange = async event => {
             event.preventDefault();
             const searchedAlbums = extractAlbumNames(value);   
-            addAlbums(searchedAlbums);
+            addSearchedAlbums(searchedAlbums);
     
         };
     const classes = useStyles();
@@ -54,7 +40,7 @@ const PlaylistInput = () => {
     return (
         <>
             <textarea className={classes.textarea} onChange={e => {setValue(e.target.value)}} placeholder="Paste playlist here"/>
-            <button className={classes.button} onClick={handleChange}>Go!</button>
+            <Button text="Go!" onClick={handleChange} />   
         </>
     )
 }

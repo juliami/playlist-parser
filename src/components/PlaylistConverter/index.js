@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { extractAlbumNames, fetchAlbumCovers } from './albums';
 import { createUseStyles } from 'react-jss'
-import DownloadButton from '../DownloadButton/DownloadButton';
+import DownloadButton from '../DownloadButton';
 import Loading from '../Loading';
 const useStyles = createUseStyles({
     smallButton: {
