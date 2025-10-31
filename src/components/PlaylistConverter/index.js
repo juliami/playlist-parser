@@ -31,12 +31,7 @@ const useStyles = createUseStyles({
         borderRadius: '6px',
         padding: '10px'
     },
-    coverImage: {
-        width: '100%',
-        maxWidth: '120px',
-        borderRadius: '6px',
-        boxShadow: '0 4px 10px rgba(0,0,0,0.15)'
-    },
+
     coverCaption: {
         marginTop: '6px',
         fontSize: '12px'
