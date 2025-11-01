@@ -74,6 +74,7 @@ const Grid = ({ albumEntries }) => {
             alt={album.albumName} 
             className={classes.coverImage}
           />
+          
           <div className={classes.albumTitle}>
             {album.artistName} — {album.albumName}
           </div>
