@@ -1,11 +1,7 @@
 
 import Button from './Button';
 
-const DownloadButton = ({ selected }) => {
-
-
-
-    return (
+const DownloadButton = ({ selected }) =>  (
         <Button text="Download collage" disabled={selected.length < 4} onClick={async () => {
             const size = 900;
             const tile = size / 2;
@@ -44,6 +40,6 @@ const DownloadButton = ({ selected }) => {
             }
         }} />
   )
-}
+
 
 export default DownloadButton;

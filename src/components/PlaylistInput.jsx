@@ -40,7 +40,7 @@ const PlaylistInput = () => {
     return (
         <>
             <textarea className={classes.textarea} onChange={e => {setValue(e.target.value)}} placeholder="Paste playlist here"/>
-            <Button text="Go!" onClick={handleChange} />   
+            <Button text="Go!" onClick={handleChange} disabled={false} />   
         </>
     )
 }
