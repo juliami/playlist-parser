@@ -8,7 +8,7 @@ const useStyles = createUseStyles({
     display: "grid",
     gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
     gridGap: "0.5rem",
-    height: "100vh",
+    maxHeight: "100vh",
     overflowY: "scroll",
     padding: '1rem'
   },
@@ -74,7 +74,6 @@ const Grid = ({ albumEntries }) => {
             alt={album.albumName} 
             className={classes.coverImage}
           />
-          
           <div className={classes.albumTitle}>
             {album.artistName} — {album.albumName}
           </div>

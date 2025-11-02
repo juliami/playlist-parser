@@ -26,7 +26,7 @@ Trailing parentheses like `(2012 Remastered)` are removed when searching.
 - After Go!, the textarea collapses to give space to results.
 - Each album shows a single current cover. Click ⟳ to try another candidate or refetch.
 - Click a cover to select/deselect it. When exactly 4 are selected, click
-  “Download 2x2 collage (900x900)” to save the image (named `YYYY-MM-DD-matrix900.png`).
+  “Download collage” to save the image (named `YYYY-MM-DD-matrix900.png`).
 - Click “Edit playlist” to return to the input view and modify your text.
 
 ### Testing
@@ -35,13 +35,5 @@ Trailing parentheses like `(2012 Remastered)` are removed when searching.
 ### Build
 - Production build: `npm run build`
 
-### Troubleshooting
-- OpenSSL/webpack error on newer Node: the project’s `package.json` scripts
-  include `NODE_OPTIONS=--openssl-legacy-provider` for `start`, `build`, and `test`.
-
 ### Tech
 - React, react-jss, CRA tooling, iTunes Search API for cover lookup
-
-### Credits
-- Built and vibe-coded collaboratively with an AI pair programmer in Cursor.
-

@@ -3,12 +3,10 @@ import Button from './Button';
 
 const DownloadButton = ({ selected }) => {
 
-    if (selected.length < 4) {
-        return null;
-    }
+
 
     return (
-        <Button text="Download 2x2 collage (900x900)" onClick={async () => {
+        <Button text="Download collage" disabled={selected.length < 4} onClick={async () => {
             const size = 900;
             const tile = size / 2;
             const canvas = document.createElement('canvas');

@@ -16,15 +16,19 @@ const useStyles = createUseStyles({
         transition: 'background-color 0.8s',
         '&:hover': {
             backgroundColor: '#74369c'
+        },
+        '&:disabled': {
+            backgroundColor: 'gray',
+            opacity: 0.4,
         }
     },
 })
 
 
 
-const Button = ({onClick, text}) => {
+const Button = ({onClick, text, disabled = true}) => {
     const classes = useStyles();
-    return (<button className={classes.button} onClick={onClick}>{text}</button>
+    return (<button className={classes.button} onClick={onClick} disabled={disabled}>{text}</button>
     )
 }
 
