@@ -1,9 +1,10 @@
 
-import { useState} from 'react';
+import { useState, useRef} from 'react';
 import { createUseStyles } from "react-jss";
 import { extractAlbumNames } from './PlaylistConverter/albums';
 import { useAlbumContext } from '../context/AlbumContext';
 import Button from './Button';
+import { useEffect } from 'react';
 
  const useStyles = createUseStyles({
         textarea: {
@@ -12,8 +13,9 @@ import Button from './Button';
             boxSizing: 'border-box',
             resize: 'none',
             width: '100%',
-            height: 'calc(100% - 5vh)',
+            height: '100%',
             outline: 'none',
+            fontSize: 'clamp(0.8rem, 1.5vh, 2rem)',
             margin: {
                 top: 'auto',
                 right: 0,
@@ -28,19 +30,18 @@ import Button from './Button';
 const PlaylistInput = () => {
         const [value, setValue] = useState('');
         const { addSearchedAlbums } = useAlbumContext();
-   
-        const handleChange = async event => {
-            event.preventDefault();
-            const searchedAlbums = extractAlbumNames(value);   
-            addSearchedAlbums(searchedAlbums);
-    
-        };
+     const valueRef = useRef();
+
+    useEffect(()=> {
+   const searchedAlbums = extractAlbumNames(value);   
+        addSearchedAlbums(searchedAlbums);
+    }, [value])    
+
     const classes = useStyles();
 
     return (
         <>
-            <textarea className={classes.textarea} onChange={e => {setValue(e.target.value)}} placeholder="Paste playlist here"/>
-            <Button text="Go!" onClick={handleChange} disabled={false} />   
+        <textarea ref={valueRef} className={classes.textarea} onChange={e => {setValue(e.target.value)}} placeholder="Paste playlist here" id="playlist-input"/>
         </>
     )
 }

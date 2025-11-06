@@ -24,7 +24,7 @@ const useStyles = createUseStyles({
 
 
 const SelectedImage = (src) => {
-  console.log(src)
+
   if (!src.src) { 
     return (
       <div />
