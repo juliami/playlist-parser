@@ -20,7 +20,6 @@ export default function CoverGrid() {
 const InnerGrid = ({ albumEntries }) => {
   const { data: covers } = useAlbumCovers(albumEntries);
 
-
   return (
     <Grid container spacing={2} columns={{ xs: 1, sm: 2, md: 3 }} sx={{p: 4, overflowY: 'scroll', maxHeight: '100vh'}}>
       {covers.map((album) => (

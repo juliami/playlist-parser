@@ -1,10 +1,9 @@
+import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { createUseStyles } from "react-jss";
 import { useAlbumContext } from '../context/AlbumContext';
-import { fetchAlbumCovers } from '../api/fetch';
-import { useAlbumCovers } from '../hooks/useAlbumCovers';
-
+import { useEffect } from 'react';
 
 const styles = {
   coverItem: {
@@ -38,32 +37,43 @@ const styles = {
 };
 const useStyles = createUseStyles(styles);
 
-const Cover = ({album}) => {
+const Cover = ({ album }) => {
   const classes = useStyles();
   const { toggleSelectedAlbums, selectedAlbums } = useAlbumContext();
   
-const {status, data, error, refetch} = useAlbumCovers([album])
+  const [urlVariant, setUrlVariant] = useState(0)
+  const [imageUrl, setImageUrl] = useState(album.artworks[urlVariant]);
+  
 
+
+
+    useEffect(()=> {
+        setImageUrl(album.artworks[urlVariant]);
+    }, [urlVariant])    
 
   const fetchDifferentCover = (e) => {
+
     e.stopPropagation();
-    console.log('fetch different');
-    
+    if (urlVariant < album.artworks.length - 1) {
+      setUrlVariant(urlVariant + 1)
+    } else {
+      setUrlVariant(0);
+    }
   }
 
   return (
-    <div key={album.key} className={`${classes.coverItem} ${selectedAlbums.find(s => s.src === album.artworkUrl600) ? classes.selectedImage : ''}`} onClick={() => toggleSelectedAlbums({ src: album.artworkUrl600 })}>
+    <div key={album.key} className={`${classes.coverItem} ${selectedAlbums.find(s => s.src === imageUrl) ? classes.selectedImage : ''}`} onClick={() => toggleSelectedAlbums({ src: imageUrl })}>
       <img
-        src={album.artworkUrl600}
+        src={imageUrl}
         alt={album.albumName}
         className={classes.coverImage}
       />
       <div className={classes.albumTitle}>
         {album.artistName} — {album.albumName}
       </div>
-      <IconButton aria-label="Refresh" onClick={fetchDifferentCover}>
+      {album.artworks.length > 1 && <IconButton aria-label="Refresh" onClick={fetchDifferentCover}>
         <RefreshIcon />
-      </IconButton>
+      </IconButton>}
     </div>
   )
 }
