@@ -26,7 +26,7 @@ const useStyles = createUseStyles({
 
 
 
-const Button = ({onClick, text, disabled = true}) => {
+const Button = ({onClick, text, disabled = false}) => {
     const classes = useStyles();
     return (<button className={classes.button} onClick={onClick} disabled={disabled}>{text}</button>
     )

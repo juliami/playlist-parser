@@ -1,5 +1,5 @@
 
-import { useState, useRef} from 'react';
+import { useState, useEffectEvent} from 'react';
 import { createUseStyles } from "react-jss";
 import { extractAlbumNames } from './PlaylistConverter/albums';
 import { useAlbumContext } from '../context/AlbumContext';
@@ -28,20 +28,24 @@ import { useEffect } from 'react';
     })
 
 const PlaylistInput = () => {
-        const [value, setValue] = useState('');
-        const { addSearchedAlbums } = useAlbumContext();
-     const valueRef = useRef();
+     const [value, setValue] = useState('');
+     const { addSearchedAlbums } = useAlbumContext();
+
+    const searchAlbums = useEffectEvent(() => {
+        const albums = extractAlbumNames(value);
+        addSearchedAlbums(albums);
+    });
 
     useEffect(()=> {
-   const searchedAlbums = extractAlbumNames(value);   
-        addSearchedAlbums(searchedAlbums);
+        searchAlbums();
     }, [value])    
 
     const classes = useStyles();
 
     return (
         <>
-        <textarea ref={valueRef} className={classes.textarea} onChange={e => {setValue(e.target.value)}} placeholder="Paste playlist here" id="playlist-input"/>
+            <textarea className={classes.textarea} onChange={e => {setValue(e.target.value)}} placeholder="Paste playlist here" id="playlist-input"/>
+            <Button text="Refresh" onClick={searchAlbums}/>
         </>
     )
 }
