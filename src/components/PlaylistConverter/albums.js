@@ -123,7 +123,6 @@ export const fetchAlbumCovers = async (albumEntries) => {
                 artworkUrl600: r.artworkUrl100 ? r.artworkUrl100.replace('100x100bb', '600x600bb') : null,
                 viewUrl: r.collectionViewUrl
             }));
-
             return [key, results];
         });
 
